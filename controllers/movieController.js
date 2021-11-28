@@ -1,6 +1,6 @@
 const Movie = require("../models/Movie");
 
-exports.post = (req, res, next)  => {
+const post = (req, res, next)  => {
     const { title, imdb_score, category, country, year } = req.body;
    
     const movie = new Movie({
@@ -10,7 +10,7 @@ exports.post = (req, res, next)  => {
         country:country,
         year: year 
     });
-    
+
     const promise = movie.save();
     promise.then((data) => {
         res.json(data);
@@ -19,3 +19,33 @@ exports.post = (req, res, next)  => {
     })
 
 };
+// movies all 
+const get = (req, res, next) => {
+    const promise = Movie.find({ });
+    promise.then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        res.json(data);
+    })
+
+}
+
+// get movies id 
+const getMovie =  (req, res, next) => {
+    const promise = Movie.findById(req.params.movie_id);
+    promise.then((data) => {
+        if(!data){
+          return  next({ message: 'The movie was not found.', code: 500 }) ;
+        }
+        res.json(data)
+    }).catch((err) =>{
+        res.json(err);
+    });
+};
+
+module.exports = {
+    post,
+    get,
+    getMovie
+ }
+

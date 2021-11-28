@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = () => {
-    mongoose.connect('mongodb+srv://mcakmakali:245245@cluster0.lzjau.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    mongoose.connect(process.env.DB_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology:true
     });

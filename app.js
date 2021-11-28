@@ -1,11 +1,16 @@
 const createError = require('http-errors');
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
+
+
 const indexRouter = require('./routes/index');
 const movie = require('./routes/movie');
+const users = require('./routes/users');
 
 const app = express();
 
@@ -23,7 +28,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movie', movie);
+
+
+
+
+//movies
+app.use('/api/movies', movie);
+app.use('/api/users', users);
+
+
+
+
 
 
 
@@ -40,7 +55,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: { message: err.message , code: err.code, status: err.status }});
 });
 
 module.exports = app;
