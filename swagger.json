@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "description": "This is a sample server movie server.",
+        "version": "1.0.0",
+        "title": "Swagger Movie Rest API",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        }
+    },
+    "servers": [{
+        "url": "http://localhost:3000"
+    }],
+    "tags": [{
+        "name": "Movie",
+        "description": "Everything about your movies" 
+    }],
+    "paths": {
+       "/api/movies": {
+            "post": {
+                "tags": ["Movie"],
+                "summary": "Add a new movie",
+                "description": "",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/movie"
+                            },
+                            "example": {
+                                "title" : "title",
+                                "imdb_score" : "imdb_score",
+                                "category": "category",
+                                "country" :"country",
+                                "year" : "year" 
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success full"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Movie"],
+                "summary": "Get all movie",
+                "description": "",
+                
+                "responses": {
+                    "200": {
+                        "description": "Success full"
+                    }
+                }
+            }
+        },
+        "/api/movies/{movie_id}": {
+            "get": {
+                "tags": ["Movie"],
+                "summary": "Get movie details",
+                "description": "",
+                "parameters": [{
+                    "in" : "path",
+                    "name" : "movie_id",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success full"
+                    }
+                }
+            } 
+        }
+       
+    },
+    "components": {
+        "schemas": {
+            "movie": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "xml": {
+                    "name": "Category"
+                }
+            }
+        }
+    }
+}

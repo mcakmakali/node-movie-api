@@ -1,5 +1,6 @@
 const Movie = require("../models/Movie");
 
+
 const post = (req, res, next)  => {
     const { title, imdb_score, category, country, year } = req.body;
    

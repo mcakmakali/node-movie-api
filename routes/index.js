@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     description: Welcome HomePage
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { get, post, getMovie } =  require("../controllers/movieController.js");
 
-/*  Movie List */
+
 router.get('/', get);
 /* Movie Save */
 router.post('/', post);
